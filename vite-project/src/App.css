@@ -71,6 +71,33 @@ h1 {
 .todo-list {
   list-style: none;
   margin-bottom: 2rem;
+  padding: 0;
+}
+
+.todo-item {
+  background-color: #fff;
+  padding: 1rem;
+  margin-bottom: 0.75rem;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  border-left: 4px solid #3498db;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.todo-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.todo-text {
+  font-size: 1.1rem;
+  color: #2c3e50;
+  margin: 0;
+  word-break: break-word;
+  padding-right: 1rem;
 }
 
 /* Responsive Design */

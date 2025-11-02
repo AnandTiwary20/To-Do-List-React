@@ -5,10 +5,32 @@ function App() {
   const [todos, setTodos] = useState([]);
   const [inputValue, setInputValue] = useState('');
 
+  // Function to handle form submission
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    
+    // Don't add empty todos
+    if (!inputValue.trim()) return;
+    
+    // Create a new todo object
+    const newTodo = {
+      id: Date.now(),
+      text: inputValue,
+      completed: false,
+      createdAt: new Date().toISOString()
+    };
+    
+    // Add the new todo to the todos array
+    setTodos([...todos, newTodo]);
+    
+    // Clear the input field
+    setInputValue('');
+  };
+
   return (
     <div className="app">
       <h1>My To-Do List</h1>
-      <form className="todo-form">
+      <form className="todo-form" onSubmit={handleSubmit}>
         <input
           type="text"
           value={inputValue}
@@ -22,7 +44,11 @@ function App() {
       </form>
       
       <ul className="todo-list">
-        {/* Todo items will be rendered here */}
+        {todos.map(todo => (
+          <li key={todo.id} className="todo-item">
+            <span className="todo-text">{todo.text}</span>
+          </li>
+        ))}
       </ul>
     </div>
   );
