@@ -13,7 +13,10 @@ const ToDoItem = ({ todo, onToggleComplete, onDelete }) => {
         {todo.text}
       </span>
       <button 
-        onClick={() => onDelete(todo.id)}
+        onClick={(e) => {
+          
+          onDelete(todo.id);}
+        }
         className="delete-button"
         aria-label="Delete task"
       >
