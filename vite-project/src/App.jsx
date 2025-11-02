@@ -1,55 +1,75 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
+import Header from './components/Header';
+import ToDoList from './components/ToDoList';
 
 function App() {
-  const [todos, setTodos] = useState([]);
+  const [todos, setTodos] = useState(() => {
+    // Load todos from localStorage if available
+    const savedTodos = localStorage.getItem('todos');
+    return savedTodos ? JSON.parse(savedTodos) : [];
+  });
   const [inputValue, setInputValue] = useState('');
 
-  // Function to handle form submission
-  const handleSubmit = (e) => {
+  // Save todos to localStorage whenever they change
+  useEffect(() => {
+    localStorage.setItem('todos', JSON.stringify(todos));
+  }, [todos]);
+
+  // Add a new todo
+  const addTodo = (e) => {
     e.preventDefault();
     
-    // Don't add empty todos
     if (!inputValue.trim()) return;
     
-    // Create a new todo object
     const newTodo = {
       id: Date.now(),
-      text: inputValue,
+      text: inputValue.trim(),
       completed: false,
       createdAt: new Date().toISOString()
     };
     
-    // Add the new todo to the todos array
     setTodos([...todos, newTodo]);
-    
-    // Clear the input field
     setInputValue('');
   };
 
+  // Toggle todo completion status
+  const toggleComplete = (id) => {
+    setTodos(todos.map(todo => 
+      todo.id === id ? { ...todo, completed: !todo.completed } : todo
+    ));
+  };
+
+  // Delete a todo
+  const deleteTodo = (id) => {
+    setTodos(todos.filter(todo => todo.id !== id));
+  };
+
   return (
-    <div className="app">
-      <h1>My To-Do List</h1>
-      <form className="todo-form" onSubmit={handleSubmit}>
-        <input
-          type="text"
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
-          placeholder="Add a new task..."
-          className="todo-input"
-        />
-        <button type="submit" className="add-button">
-          Add Task
-        </button>
-      </form>
+    <div className="app-container">
+      <Header />
       
-      <ul className="todo-list">
-        {todos.map(todo => (
-          <li key={todo.id} className="todo-item">
-            <span className="todo-text">{todo.text}</span>
-          </li>
-        ))}
-      </ul>
+      <main className="main-content">
+        <form onSubmit={addTodo} className="todo-form">
+          <input
+            type="text"
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
+            placeholder="Add a new task..."
+            className="todo-input"
+            aria-label="Add a new task"
+          />
+          <button type="submit" className="add-button">
+            Add Task
+          </button>
+        </form>
+        
+        <ToDoList 
+          todos={todos}
+          onToggleComplete={toggleComplete}
+          onDelete={deleteTodo}
+        />
+      </main>
     </div>
   );
 }
