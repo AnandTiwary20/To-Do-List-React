@@ -20,8 +20,7 @@ Header — App title and optional filters
 ✅ Add new tasks  
 ✅ Edit existing tasks  
 ✅ Mark tasks as completed / uncompleted  
-✅ Delete tasks  
-✅ Save tasks in localStorage (persistent after page reload)  
+✅ Delete tasks   
 ✅ Responsive UI for all devices  
 ✅ Built with modern React (Hooks, Components, etc.)
 
@@ -30,8 +29,7 @@ Header — App title and optional filters
 ## 🧩 Tech Stack
 
 - ⚛️ **React.js** — UI Library  
-- ⚡ **Vite** — Fast build tool for modern React apps   
-- 🎨 **CSS3** — Styling and responsiveness  
+- ⚡ **Vite** — Fast build tool for modern React apps
 
 ---
 
@@ -42,7 +40,8 @@ Header — App title and optional filters
 | `npm run preview` | Preview the production build locally |
 
 #Steps to Run the server -
-1- Change directory to vite-project.
+1- Change directory to vite-project. </br>
+
 2- Type " npm run dev" in the terminal.
 
 
