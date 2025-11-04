@@ -7,7 +7,7 @@
 }
 
 body {
-  background-color: black;
+  background-color: rgba(97, 198, 238, 0.522);
   color: white;
   line-height: 1.6;
   padding: 20px;
@@ -121,7 +121,7 @@ h1 {
 
 .empty-message {
   text-align: center;
-  color: #666;
+  color: black;
   font-style: italic;
   margin: 2rem 0;
 }
