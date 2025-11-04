@@ -1,7 +1,7 @@
 import React from 'react';
 import ToDoItem from './ToDoItem';
 
-const ToDoList = ({ todos, onToggleComplete, onDelete }) => {
+const ToDoList = ({ todos, onToggleComplete, onDelete, onUpdateTodo }) => {
 
   if(todos.length ==0){
    return <p className="empty-message">No tasks yet. Please add one!</p>;
@@ -15,6 +15,7 @@ const ToDoList = ({ todos, onToggleComplete, onDelete }) => {
             todo={todo}
             onToggleComplete={onToggleComplete}
             onDelete={onDelete}
+            onUpdateTodo={onUpdateTodo}
           />
         )
       )}

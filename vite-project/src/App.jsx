@@ -45,6 +45,14 @@ function App() {
     setTodos(todos.filter(todo => todo.id !== id));
   };
 
+  // Update a todo
+  const updateTodo = (id, newText) => {
+    if (!newText.trim()) return;
+    setTodos(todos.map(todo => 
+      todo.id === id ? { ...todo, text: newText.trim() } : todo
+    ));
+  };
+
   return (
     <div className="app-container">
       <Header />
@@ -68,6 +76,7 @@ function App() {
           todos={todos}
           onToggleComplete={toggleComplete}
           onDelete={deleteTodo}
+          onUpdateTodo={updateTodo}
         />
       </main>
     </div>
